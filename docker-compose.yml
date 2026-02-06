@@ -1,6 +1,21 @@
 name: greenbone-community-edition
 
 services:
+  vulnerability-tests:
+    image: registry.community.greenbone.net/community/vulnerability-tests
+    environment:
+      FEED_RELEASE: "24.10"
+      KEEP_ALIVE: 1
+    volumes:
+      - vt_data_vol:/mnt
+
+  notus-data:
+    image: registry.community.greenbone.net/community/notus-data
+    environment:
+      KEEP_ALIVE: 1
+    volumes:
+      - notus_data_vol:/mnt
+
   scap-data:
     image: registry.community.greenbone.net/community/scap-data
     environment:
@@ -10,3 +25,5 @@ services:
 
 volumes:
   scap_data_vol:
+  vt_data_vol:
+  notus_data_vol:
