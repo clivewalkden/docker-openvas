@@ -61,6 +61,8 @@ services:
 
   gpg-data:
     image: registry.community.greenbone.net/community/gpg-data
+    environment:
+      KEEP_ALIVE: 1
     volumes:
       - gpg_data_vol:/mnt
 
@@ -72,7 +74,7 @@ services:
 
   pg-gvm-migrator:
     image: registry.community.greenbone.net/community/pg-gvm-migrator:stable
-    restart: no
+    restart: unless-stopped
     volumes:
       - psql_data_vol:/var/lib/postgresql
       - psql_socket_vol:/var/run/postgresql
