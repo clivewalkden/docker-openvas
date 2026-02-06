@@ -76,16 +76,17 @@ services:
     volumes:
       - psql_data_vol:/var/lib/postgresql
       - psql_socket_vol:/var/run/postgresql
-    depends_on:
-      pg-gvm-migrator:
-        condition: service_completed_successfully
+    # depends_on:
+    #   pg-gvm-migrator:
+    #     condition: service_completed_successfully
 
-  pg-gvm-migrator:
-    image: registry.community.greenbone.net/community/pg-gvm-migrator:stable
-    restart: no
-    volumes:
-      - psql_data_vol:/var/lib/postgresql
-      - psql_socket_vol:/var/run/postgresql
+  # Only needed when a major upgrade is performed and the database needs to be migrated, otherwise it can be removed to save resources
+  # pg-gvm-migrator:
+  #   image: registry.community.greenbone.net/community/pg-gvm-migrator:stable
+  #   restart: no
+  #   volumes:
+  #     - psql_data_vol:/var/lib/postgresql
+  #     - psql_socket_vol:/var/run/postgresql
 
   gvmd:
     image: registry.community.greenbone.net/community/gvmd:stable
