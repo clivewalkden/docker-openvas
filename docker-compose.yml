@@ -1,4 +1,4 @@
-name: greenbone-community-edition
+version: "3.0"
 
 services:
   vulnerability-tests:
